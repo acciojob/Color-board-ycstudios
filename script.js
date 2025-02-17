@@ -1,4 +1,3 @@
-//your JS code here. If required.
 const container = document.querySelector('.container');
 
 // Create 800 squares dynamically
@@ -6,10 +5,18 @@ for (let i = 1; i <= 800; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
     container.appendChild(square);
-}
 
-// Select all squares
-const squares = document.querySelectorAll('.square');
+    // Add event listeners to each square right after creating it
+    square.addEventListener('mouseover', () => {
+        const randomColor = getRandomColor();
+        square.style.backgroundColor = randomColor;
+
+        // Revert back to default color after 1 second
+        setTimeout(() => {
+            square.style.backgroundColor = "";
+        }, 1000);
+    });
+}
 
 // Function to generate a random color
 function getRandomColor() {
@@ -20,15 +27,3 @@ function getRandomColor() {
     }
     return color;
 }
-
-// Add event listeners to each square
-squares.forEach((square) => {
-    square.addEventListener('mouseover', () => {
-        const randomColor = getRandomColor();
-        square.style.backgroundColor = randomColor;
-
-        // Revert back to default color after 1 second
-        setTimeout(() => {
-            square.style.backgroundColor = "";
-        }, 1000);
-    });
